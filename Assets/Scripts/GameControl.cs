@@ -9,11 +9,11 @@ public class GameControl : MonoBehaviour {
 	public static GameControl instance;
 	public GameObject GameOverText;
 	public Text ScoreText;
+	public Text CoinText;
 	public bool gameOver = false;
 	public float scrollSpeed = -1.5f;
-
 	private int score = 0;
-
+	private int coins = 0;
 
 	// Use this for initialization
 	void Awake () {
@@ -30,6 +30,17 @@ public class GameControl : MonoBehaviour {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
 		
+	}
+
+	public void HeroGotCoin(){
+		if (gameOver == true) {
+			return;
+		}
+
+		coins++;
+		score++;
+		ScoreText.text = "Score: " + score.ToString ();
+		CoinText.text = "x " + coins.ToString ();
 	}
 
 	public void HeroScored(){

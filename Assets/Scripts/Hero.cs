@@ -37,6 +37,7 @@ public class Hero : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
+	
 		rb2d.velocity = Vector2.zero;
 		animation.SetTrigger ("Die");
 		isDead = true;

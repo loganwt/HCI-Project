@@ -1,13 +1,17 @@
 fileFormatVersion: 2
-guid: 84c5499c06e40cc4eaeef35dc7f42257
-timeCreated: 1540337911
+guid: 1e1206909e414ee4db38a5fac4cf8507
+timeCreated: 1540339679
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Coin_0
-    21300002: Coin_1
-    21300004: Coin_2
-    21300006: Coin_3
+    21300000: Sparkle_0
+    21300002: Sparkle_1
+    21300004: Sparkle_2
+    21300006: Sparkle_3
+    21300008: Sparkle_4
+    21300010: Sparkle_5
+    21300012: Sparkle_6
+    21300014: Sparkle_7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -106,7 +110,46 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Coin_0
+      name: Sparkle_0
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 296
+        width: 68
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sparkle_1
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 296
+        width: 68
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sparkle_2
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 296
+        width: 68
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sparkle_3
       rect:
         serializedVersion: 2
         x: 36
@@ -119,7 +162,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Coin_1
+      name: Sparkle_4
       rect:
         serializedVersion: 2
         x: 164
@@ -132,7 +175,20 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Coin_2
+      name: Sparkle_5
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 168
+        width: 68
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sparkle_6
       rect:
         serializedVersion: 2
         x: 36
@@ -145,7 +201,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Coin_3
+      name: Sparkle_7
       rect:
         serializedVersion: 2
         x: 164
