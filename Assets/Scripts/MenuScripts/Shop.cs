@@ -58,6 +58,7 @@ public class Shop : MonoBehaviour {
 		/**PlayerPrefs.SetInt ("Total Coins", 10);
 		PlayerPrefs.SetInt ("CanEquipBear", 0);
 		PlayerPrefs.SetInt ("CanEquipMoney", 0);**/
+
 		canequipbear.text = "Can Equip " + PlayerPrefs.GetInt("CanEquipBear").ToString();
 		equipped.text = "skin: " + PlayerPrefs.GetInt ("EquippedSkin").ToString ();
 
@@ -72,49 +73,10 @@ public class Shop : MonoBehaviour {
 		MoneyEquipText.text = PlayerPrefs.GetString ("Money");
 
 
-		/**switch (equippedSkin) {
-
-		case 0:
-			
-			PlayerPrefs.SetString ("Alien", CurrentlyUsing);
-			PlayerPrefs.SetString ("Bear", Equip);
-			PlayerPrefs.SetString ("Money", Equip);
-			equipAlienButton.GetComponent<Button> ().interactable = false;
-			equipBearButton.GetComponent<Button> ().interactable = true;
-			equipMoneyButton.GetComponent<Button> ().interactable = true;
-
-			AlienEquipText.text = PlayerPrefs.GetString ("Alien");
-			break;
-		case 1:
-			PlayerPrefs.SetString ("Alien", Equip);
-			PlayerPrefs.SetString ("Bear", CurrentlyUsing);
-			PlayerPrefs.SetString ("Money", Equip);
-			equipAlienButton.GetComponent<Button> ().interactable = true;
-			equipBearButton.GetComponent<Button> ().interactable = false;
-			equipMoneyButton.GetComponent<Button> ().interactable = true;
-			BearEquipText.text = PlayerPrefs.GetString ("Bear");
-			break;
-		case 2:
-			PlayerPrefs.SetString ("Alien", Equip);
-			PlayerPrefs.SetString ("Bear", Equip);
-			PlayerPrefs.SetString ("Money", CurrentlyUsing);
-			equipAlienButton.GetComponent<Button> ().interactable = true;
-			equipBearButton.GetComponent<Button> ().interactable = true;
-			equipMoneyButton.GetComponent<Button> ().interactable = false;
-
-			break;
-		}**/
 
 
 		canEquipBear = PlayerPrefs.GetInt ("CanEquipBear");
 		canEquipMoney = PlayerPrefs.GetInt ("CanEquipMoney");
-		/**if (canEquipBear == 1 && equippedSkin != 1) {
-			PlayerPrefs.SetString ("Bear", Equip);
-			BearEquipText.text = PlayerPrefs.GetString ("Bear");
-			bearButton.SetActive (false);
-			equipBearButton.SetActive (true);
-
-		}**/
 
 		//Grabs Player Prefs for Text
 		AlienEquipText.text = PlayerPrefs.GetString ("Alien");
@@ -135,10 +97,23 @@ public class Shop : MonoBehaviour {
 			BearText.text = PlayerPrefs.GetString("Bear");
 		}
 
+
 		if (currentTotalCoins >= priceMoney && canEquipMoney != 1) {
 			bearButton.GetComponent<Button> ().interactable = true;
 			PlayerPrefs.SetString ("Alien", Buy);
 			BearText.text = PlayerPrefs.GetString("Bear");
+		}
+
+		if (canEquipBear == 1) {
+			bearButton.SetActive (false);
+			equipBearButton.SetActive (true);
+
+		}
+
+
+		if (canEquipMoney == 1) {
+			moneyButton.SetActive (false);
+			equipMoneyButton.SetActive (true);
 		}
 
 
@@ -147,6 +122,8 @@ public class Shop : MonoBehaviour {
 	}
 
 	void Update () {
+
+		equippedSkin = PlayerPrefs.GetInt ("EquippedSkin");
 
 		if (currentTotalCoins < priceBear) {
 			bearButton.GetComponent<Button> ().interactable = false;
@@ -157,9 +134,8 @@ public class Shop : MonoBehaviour {
 			moneyButton.GetComponent<Button> ().interactable = false;
 
 		}
-
-		equippedSkin = PlayerPrefs.GetInt ("EquippedSkin");
-
+			
+		//Checks to see which skin is equipped.
 		switch (equippedSkin) {
 
 		case 0:
@@ -184,6 +160,7 @@ public class Shop : MonoBehaviour {
 
 
 			break;
+
 		case 1:
 			PlayerPrefs.SetString ("Bear", CurrentlyUsing);
 			PlayerPrefs.SetString ("Alien", Equip);
@@ -199,6 +176,7 @@ public class Shop : MonoBehaviour {
 			equipAlienButton.GetComponent<Button> ().interactable = true;
 			equipMoneyButton.GetComponent<Button> ().interactable = true;
 			break;
+
 		case 2:
 			
 			PlayerPrefs.SetString ("Alien", Equip);
@@ -217,6 +195,10 @@ public class Shop : MonoBehaviour {
 
 			break;
 		}
+
+
+
+
 		if (currentTotalCoins >= priceBear && canEquipBear != 1) {
 			bearButton.GetComponent<Button> ().interactable = true;
 			PlayerPrefs.SetString ("Bear", Buy);
@@ -243,13 +225,7 @@ public class Shop : MonoBehaviour {
 	//Code for alien skin.
 	public void EquipAlienItem (){
 			PlayerPrefs.SetInt ("EquippedSkin", 0);
-			/**PlayerPrefs.SetString ("Alien", CurrentlyUsing); 
-			PlayerPrefs.SetString ("Bear", Equip);
-			AlienEquipText.text = PlayerPrefs.GetString ("Alien");
-			BearEquipText.text = PlayerPrefs.GetString ("Bear");
-			equipBearButton.GetComponent<Button> ().interactable = true;
-			equipAlienButton.GetComponent<Button> ().interactable = false;
-			//equipMoneyButton.GetComponent<Button> ().interactable = true;**/
+
 
 
 	}
@@ -269,13 +245,7 @@ public class Shop : MonoBehaviour {
 	public void EquipBearItem (){
 
 			PlayerPrefs.SetInt ("EquippedSkin", 1);
-			/**PlayerPrefs.SetString ("Bear", CurrentlyUsing);
-			PlayerPrefs.SetString ("Alien", Equip);
-			AlienEquipText.text = PlayerPrefs.GetString ("Alien");
-			BearEquipText.text = PlayerPrefs.GetString ("Bear");
-			equipBearButton.GetComponent<Button> ().interactable = false;
-			equipAlienButton.GetComponent<Button> ().interactable = true;
-			//equipMoneyButton.GetComponent<Button> ().interactable = true;**/
+
 
 
 	}

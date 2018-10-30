@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour {
 
 	public static GameControl instance;
-	public GameObject GameOverText;
 	public GameObject columnPrefab;
 	public GameObject HeroAlien;
 	public GameObject HeroBear;
 	public GameObject HeroMoney;
 	public GameObject GameOverMenu;
+	public Text FinalCoinText;
+	public Text FinalScoreText;
+	public Text GameOverText;
 	public Text ScoreText;
 	public Text CoinText;
 	public Text HighScoreText;
@@ -57,10 +59,7 @@ public class GameControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		/**float y = Random.Range (-0.5f, 3f);
-		float x = 6.15f;
-		Vector2 columnSpawn = new Vector2 (x,y);
-		Instantiate (columnPrefab, columnSpawn, Quaternion.identity);**/
+
 
 		TotalCoinText.text = "Total Coins: " + PlayerPrefs.GetInt ("Total Coins").ToString();
 		HighScoreText.text = "HiScore: " + PlayerPrefs.GetInt ("HiScore").ToString();
@@ -105,8 +104,16 @@ public class GameControl : MonoBehaviour {
 	public void HeroDied(){
 		StartCoroutine(DelayGameOver());
 		gameOver = true;
+		FinalCoinText.text = "Coins Collected: " + coins.ToString ();
+		FinalScoreText.text = "Your Score: " + score.ToString ();
+		TotalCoinText.text = "Total Coins: " + currentTotalCoins.ToString ();
+
 		if (score > currentHiScore) {
 			PlayerPrefs.SetInt ("HiScore", score);
+			HighScoreText.text = "NEW HISCORE!: " + PlayerPrefs.GetInt("HiScore").ToString();
+			HighScoreText.color = new Color (255, 237, 0, 255);
+		} else {
+			HighScoreText.text = "Current HiScore: " + PlayerPrefs.GetInt("HiScore").ToString();
 		}
 
 	}
