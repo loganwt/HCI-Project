@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour {
 
+
 	public static GameControl instance;
 	public GameObject columnPrefab;
 	public GameObject HeroAlien;
 	public GameObject HeroBear;
 	public GameObject HeroMoney;
 	public GameObject GameOverMenu;
+	public GameObject ScoreCoins;
 	public Text FinalCoinText;
 	public Text FinalScoreText;
 	public Text GameOverText;
@@ -27,6 +29,9 @@ public class GameControl : MonoBehaviour {
 	private int currentTotalCoins = 0;
 	private int equippedSkin;
 
+	private bool paused = false;
+	public Text pauseText;
+
 	// Use this for initialization
 	void Awake () {
 		if (instance == null) {
@@ -34,6 +39,7 @@ public class GameControl : MonoBehaviour {
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
+
 
 		//Decides which hero will be used.
 
@@ -58,7 +64,14 @@ public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		float y = Random.Range (-0.5f, 3f);
+		float x = 9.5f;
+		//float y2 = Random.Range (-0.5f, 3f);
+		//float x2 = 10.5f;
+		Vector2 columnSpawn = new Vector2 (x,y);
+		//Vector2 columnSpawn2 = new Vector2 (x2,y2);
+		Instantiate (columnPrefab, columnSpawn, Quaternion.identity);
+		//Instantiate (columnPrefab, columnSpawn2, Quaternion.identity);
 
 
 		TotalCoinText.text = "Total Coins: " + PlayerPrefs.GetInt ("Total Coins").ToString();
@@ -73,6 +86,18 @@ public class GameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (gameOver != false) {
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				Time.timeScale = Mathf.Approximately (Time.timeScale, 0.0f) ? 1.0f : 0.0f;
+				if (paused == false) {
+					pauseText.text = "Paused";
+					paused = true;
+				} else {
+					pauseText.text = "";
+					paused = false;
+				}
+			}
+		}
 
 		
 	}
@@ -104,13 +129,15 @@ public class GameControl : MonoBehaviour {
 	public void HeroDied(){
 		StartCoroutine(DelayGameOver());
 		gameOver = true;
+
 		FinalCoinText.text = "Coins Collected: " + coins.ToString ();
 		FinalScoreText.text = "Your Score: " + score.ToString ();
 		TotalCoinText.text = "Total Coins: " + currentTotalCoins.ToString ();
+		ScoreCoins.SetActive (false);
 
 		if (score > currentHiScore) {
 			PlayerPrefs.SetInt ("HiScore", score);
-			HighScoreText.text = "NEW HISCORE!: " + PlayerPrefs.GetInt("HiScore").ToString();
+			HighScoreText.text = "NEW HISCORE: " + PlayerPrefs.GetInt("HiScore").ToString();
 			HighScoreText.color = new Color (255, 237, 0, 255);
 		} else {
 			HighScoreText.text = "Current HiScore: " + PlayerPrefs.GetInt("HiScore").ToString();

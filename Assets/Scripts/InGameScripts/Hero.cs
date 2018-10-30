@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Hero : MonoBehaviour {
 
@@ -30,7 +31,13 @@ public class Hero : MonoBehaviour {
 				animation.SetTrigger ("Boost");
 
 			}
+
+
 		}
+
+
+
+
 		
 	}
 
@@ -43,4 +50,9 @@ public class Hero : MonoBehaviour {
 		isDead = true;
 		GameControl.instance.HeroDied();
 	}
+
+
+
+
+		
 }
