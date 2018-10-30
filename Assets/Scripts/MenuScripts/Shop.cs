@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour {
-	//debug vairables. delete after done.
-	public Text equipped;
-	public Text canequipbear;
 
 
 	//end of debug
@@ -32,6 +29,10 @@ public class Shop : MonoBehaviour {
 	public GameObject equipBearButton;
 	public GameObject moneyButton;
 	public GameObject equipMoneyButton;
+	public GameObject bearAvailable;
+	public GameObject bearPurchased;
+	public GameObject moneyAvailable;
+	public GameObject moneyPurchased;
 
 
 	private int currentTotalCoins;
@@ -53,16 +54,7 @@ public class Shop : MonoBehaviour {
 	}
 
 	void Start () {
-		//Debug Code
 
-		/**PlayerPrefs.SetInt ("Total Coins", 10);
-		PlayerPrefs.SetInt ("CanEquipBear", 0);
-		PlayerPrefs.SetInt ("CanEquipMoney", 0);**/
-
-		canequipbear.text = "Can Equip " + PlayerPrefs.GetInt("CanEquipBear").ToString();
-		equipped.text = "skin: " + PlayerPrefs.GetInt ("EquippedSkin").ToString ();
-
-		//End of Debug Code
 
 		PlayerPrefs.SetString ("Bear", NotEnough);
 		PlayerPrefs.SetString ("Money", NotEnough);
@@ -147,14 +139,23 @@ public class Shop : MonoBehaviour {
 			PlayerPrefs.SetString ("Alien", CurrentlyUsing); 
 			if (canEquipBear == 1) {
 				PlayerPrefs.SetString ("Bear", Equip);
+				bearPurchased.SetActive (true);
+				bearAvailable.SetActive (false);
 			} else {
 				PlayerPrefs.SetString ("Bear", NotEnough);
+				bearPurchased.SetActive (false);
+				bearAvailable.SetActive (true);
 			}
 
 			if (canEquipMoney == 1) {
 				PlayerPrefs.SetString ("Money", Equip);
+				moneyPurchased.SetActive (true);
+				moneyAvailable.SetActive (false);
 			} else {
 				PlayerPrefs.SetString ("Money", NotEnough);
+				moneyPurchased.SetActive (false);
+				moneyAvailable.SetActive (true);
+
 			}
 
 
@@ -166,11 +167,17 @@ public class Shop : MonoBehaviour {
 			PlayerPrefs.SetString ("Alien", Equip);
 			AlienEquipText.text = PlayerPrefs.GetString ("Alien");
 			BearEquipText.text = PlayerPrefs.GetString ("Bear");
+			bearPurchased.SetActive (true);
+			bearAvailable.SetActive (false);
 
 			if (canEquipMoney == 1) {
 				PlayerPrefs.SetString ("Money", Equip);
+				moneyPurchased.SetActive (true);
+				moneyAvailable.SetActive (false);
 			} else {
 				PlayerPrefs.SetString ("Money", NotEnough);
+				moneyPurchased.SetActive (false);
+				moneyAvailable.SetActive (true);
 			}
 			equipBearButton.GetComponent<Button> ().interactable = false;
 			equipAlienButton.GetComponent<Button> ().interactable = true;
@@ -180,11 +187,16 @@ public class Shop : MonoBehaviour {
 		case 2:
 			
 			PlayerPrefs.SetString ("Alien", Equip);
-
+			moneyPurchased.SetActive (true);
+			moneyAvailable.SetActive (false);
 			if (canEquipBear == 1) {
 				PlayerPrefs.SetString ("Bear", Equip);
+				bearPurchased.SetActive (true);
+				bearAvailable.SetActive (false);
 			} else {
 				PlayerPrefs.SetString ("Bear", NotEnough);
+				bearPurchased.SetActive (false);
+				bearAvailable.SetActive (true);
 			}
 
 
@@ -268,16 +280,6 @@ public class Shop : MonoBehaviour {
 
 	}
 
-	//Debug Button
-
-	public void DebugButton (){
-		PlayerPrefs.SetInt ("Total Coins", 0);
-		PlayerPrefs.SetInt ("CanEquipBear", 0);
-		PlayerPrefs.SetInt ("CanEquipMoney", 0);
-		PlayerPrefs.SetInt ("EquippedSkin", 0);
-		PlayerPrefs.SetInt ("HiScore", 0);
-	
-	}
 
 
 }

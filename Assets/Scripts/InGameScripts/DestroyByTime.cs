@@ -8,6 +8,7 @@ public class DestroyByTime : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		Destroy (gameObject, timeAlive);
 	}
 
