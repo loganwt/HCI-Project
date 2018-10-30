@@ -5,7 +5,9 @@ using UnityEngine;
 public class Hero : MonoBehaviour {
 
 	public float boostPower = 210f;
-	private bool isDead = false;
+    public AudioSource audioSource;
+    //public AudioClip deathSound;
+    private bool isDead = false;
 	private Rigidbody2D rb2d;
 	private Animator animation;
 
@@ -15,9 +17,10 @@ public class Hero : MonoBehaviour {
 
 		rb2d = GetComponent<Rigidbody2D> ();
 		animation = GetComponent<Animator> ();
+        audioSource = GetComponent<AudioSource> ();
+        //deathSound = GetComponent<AudioClip>();
 
-
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -37,10 +40,14 @@ public class Hero : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-	
-		rb2d.velocity = Vector2.zero;
-		animation.SetTrigger ("Die");
-		isDead = true;
-		GameControl.instance.HeroDied();
+
+        if (isDead == false)
+        {
+            rb2d.velocity = Vector2.zero;
+            animation.SetTrigger("Die");
+            audioSource.Play();
+            isDead = true;
+            GameControl.instance.HeroDied();
+        }
 	}
 }
