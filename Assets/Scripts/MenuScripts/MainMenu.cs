@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
 
+    public Text MuteSoundText;
 	public Text HiScoreText;
-
+    private bool isMuted = false;
 	void Start () {
 
 		HiScoreText.text = "Current HiScore: " + PlayerPrefs.GetInt ("HiScore").ToString ();
@@ -26,6 +27,22 @@ public class MainMenu : MonoBehaviour {
 
 	//Debug Button
 
+    public void MuteSound()
+    {
+        if(isMuted == false)
+        {
+            MuteSoundText.text = "Unmute Sound";
+            AudioListener.volume = 0;
+            isMuted = true;
+        }
+
+        else
+        {
+            MuteSoundText.text = "Mute Sound";
+            AudioListener.volume = 1;
+            isMuted = false;
+        }
+    }
 
 
 	public void DebugButton (){

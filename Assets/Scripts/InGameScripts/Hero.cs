@@ -25,7 +25,7 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isDead == false) {
+		if (isDead == false && GameControl.instance.gameOver != true) {
 
 			if (Input.GetMouseButtonDown (0)) {
 

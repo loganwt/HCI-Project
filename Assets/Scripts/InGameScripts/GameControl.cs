@@ -86,7 +86,7 @@ public class GameControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (gameOver != false) {
+		if (gameOver != true) {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				Time.timeScale = Mathf.Approximately (Time.timeScale, 0.0f) ? 1.0f : 0.0f;
 				if (paused == false) {
